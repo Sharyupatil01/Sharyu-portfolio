@@ -38,7 +38,7 @@ export default function Hero() {
             </p>
 
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
-              Passionate about building scalable web applications, exploring AI/ML, and solving complex problems through code. 🚀
+              Passionate about building scalable web applications, exploring AI/ML, and solving complex problems through code. 
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -160,7 +160,7 @@ export default function Hero() {
                               <span className="text-gray-300">: [</span>
                             </>
                           )}
-                          {(line.includes('React') || line.includes('Next.js') || line.includes('Node.js') || line.includes('TypeScript') || line.includes('AI/ML')) && (
+                          {(line.includes('React') || line.includes('Java') || line.includes('Node.js') || line.includes('JavaScript') || line.includes('AI/ML')) && (
                             <>
                               <span className="text-gray-300">    </span>
                               <span className="text-green-400">"{line.trim().replace(/",?$/g, '')}"</span>
@@ -199,7 +199,7 @@ export default function Hero() {
                           {line === '};' && (
                             <span className="text-gray-300">{'};'}</span>
                           )}
-                          {!line.includes('const') && !line.includes('name:') && !line.includes('role:') && !line.includes('expertise:') && !line.includes('React') && !line.includes('Next.js') && !line.includes('Node.js') && !line.includes('TypeScript') && !line.includes('AI/ML') && !line.includes('],') && !line.includes('passion:') && !line.includes('currentlyLearning:') && !line.includes('funFact:') && !line.includes('};') && (
+                          {!line.includes('const') && !line.includes('name:') && !line.includes('role:') && !line.includes('expertise:') && !line.includes('Javascript')&&  !line.includes('Java') &&  !line.includes('React') && !line.includes('Node.js') && !line.includes('AI/ML') && !line.includes('],') && !line.includes('passion:') && !line.includes('currentlyLearning:') && !line.includes('funFact:') && !line.includes('};') && (
                             <span className="text-gray-300">{line}</span>
                           )}
                         </span>
