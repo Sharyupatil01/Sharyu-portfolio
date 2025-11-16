@@ -9,9 +9,7 @@ interface ProjectDetailPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export default async function ProjectDetailPage({
-  params,
-}: ProjectDetailPageProps) {
+export default async function ProjectDetailPage({ params }: ProjectDetailPageProps) {
   const { slug } = await params;
   const project = getProjectBySlug(slug);
 
@@ -20,192 +18,176 @@ export default async function ProjectDetailPage({
   }
 
   return (
-    <main>
+    <main className="bg-gradient-to-br from-blue-50 via-purple-50 to-cyan-50 
+        dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+
       {/* Breadcrumb */}
-      <div className="bg-gray-50 dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <Link href="/projects" className="text-blue-600 hover:text-blue-700">
-            ← Back to Projects
-          </Link>
+      <div className="backdrop-blur-md bg-white/20 dark:bg-gray-800/20 border-b border-white/20 dark:border-gray-700/20 shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 py-4">
+          <motion.div whileHover={{ x: -5 }}>
+            <Link href="/projects" className="text-blue-600 dark:text-blue-300 hover:underline">
+              ← Back to Projects
+            </Link>
+          </motion.div>
         </div>
       </div>
 
       {/* Project Header */}
-      <section className="py-12 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-16">
+        <div className="max-w-6xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.6 }}
+            className="backdrop-blur-xl bg-white/30 dark:bg-gray-800/30 p-10 rounded-2xl shadow-lg border border-white/20 dark:border-gray-700/30"
           >
-            <h1 className="text-5xl font-bold mb-4">{project.title}</h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
+            <h1 className="text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+              {project.title}
+            </h1>
+
+            <p className="text-xl text-gray-700 dark:text-gray-300 mt-4 mb-8">
               {project.description}
             </p>
+
             <div className="flex flex-wrap gap-2 mb-8">
               {project.technologies.map((tech) => (
                 <span
                   key={tech}
-                  className="px-4 py-2 bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 rounded-full text-sm font-medium"
+                  className="px-4 py-2 backdrop-blur-md bg-white/20 dark:bg-gray-900/20 
+                  border border-white/30 dark:border-gray-700/40 text-blue-600 
+                  dark:text-blue-300 rounded-full text-sm font-medium shadow"
                 >
                   {tech}
                 </span>
               ))}
             </div>
-            <div className="flex gap-4">
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-              >
-                View on GitHub
-              </a>
-            </div>
+
+            {/* TRANSPARENT BUTTON */}
+            <motion.a
+              whileHover={{ scale: 1.07 }}
+              whileTap={{ scale: 0.96 }}
+              href={project.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-6 py-3 rounded-lg font-semibold 
+              backdrop-blur-lg bg-white/10 dark:bg-gray-900/10 
+              border border-blue-400/40 text-blue-700 dark:text-blue-300 
+              shadow-lg hover:shadow-blue-300/40 hover:bg-white/20 transition"
+            >
+              View on GitHub →
+            </motion.a>
           </motion.div>
         </div>
       </section>
 
       {/* Project Details */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="py-20">
+        <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-            className="space-y-8"
+            transition={{ duration: 0.6 }}
+            className="space-y-12"
           >
-            <div>
+            {/* Overview */}
+            <div className="backdrop-blur-xl bg-white/40 dark:bg-gray-800/40 p-8 rounded-xl border border-white/20 dark:border-gray-700/20 shadow-lg">
               <h2 className="text-3xl font-bold mb-4">Project Overview</h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400 leading-relaxed">
+              <p className="text-lg text-gray-700 dark:text-gray-300">
                 {project.details || project.description}
               </p>
             </div>
 
-            <div>
+            {/* Key Features */}
+            <div className="backdrop-blur-xl bg-white/40 dark:bg-gray-800/40 p-8 rounded-xl border border-white/20 dark:border-gray-700/20 shadow-lg">
               <h2 className="text-3xl font-bold mb-4">Key Features</h2>
-              <ul className="space-y-3 text-lg text-gray-600 dark:text-gray-400">
+              <ul className="space-y-3 text-lg text-gray-700 dark:text-gray-300">
+                {/* (Existing conditional project-based features) */}
                 {project.slug === "gyaan-shaala" && (
                   <>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>JWT-based authentication system with secure password hashing</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Course management with rich content support</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Cloudinary integration for secure file uploads</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Razorpay payment gateway integration</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>MongoDB database for scalability</span>
-                    </li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> JWT-based authentication</li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> Course management system</li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> Cloudinary integration</li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> Razorpay payments</li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> Scalable MongoDB backend</li>
                   </>
                 )}
+
                 {project.slug === "sentiment-analysis" && (
                   <>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>TF-IDF vectorization for text processing</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Logistic Regression model with 85%+ accuracy</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Cross-validation and proper train-test split</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Movie review dataset analysis</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Comprehensive preprocessing pipeline</span>
-                    </li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> TF-IDF Vectorization</li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> Logistic Regression (85% accuracy)</li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> Clean preprocessing pipeline</li>
                   </>
                 )}
+
                 {project.slug === "fin-pilot" && (
                   <>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>React frontend with responsive Tailwind CSS design</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>FastAPI backend for high performance</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>LangChain RAG for AI-powered recommendations</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Personalized financial advisory</span>
-                    </li>
-                    <li className="flex gap-3">
-                      <span className="text-blue-600">✓</span>
-                      <span>Real-time market data integration</span>
-                    </li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> FastAPI backend</li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> LangChain RAG</li>
+                    <li className="flex gap-3"><span className="text-blue-600">✓</span> Real-time market analysis</li>
                   </>
                 )}
               </ul>
             </div>
 
-            <div>
+            {/* Tech Stack */}
+            <div className="backdrop-blur-xl bg-white/40 dark:bg-gray-800/40 p-8 rounded-xl border border-white/20 dark:border-gray-700/20 shadow-lg">
               <h2 className="text-3xl font-bold mb-4">Tech Stack</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {project.technologies.map((tech) => (
                   <div
                     key={tech}
-                    className="p-4 bg-blue-50 dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-gray-700"
+                    className="p-4 backdrop-blur-lg bg-white/20 dark:bg-gray-900/20 
+                      border border-white/20 dark:border-gray-700/20 rounded-lg shadow"
                   >
-                    <p className="font-semibold text-gray-900 dark:text-white">
-                      {tech}
-                    </p>
+                    <p className="font-semibold text-gray-900 dark:text-white">{tech}</p>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div>
+            {/* CTA */}
+            <div className="backdrop-blur-xl bg-white/40 dark:bg-gray-800/40 p-8 rounded-xl border border-white/20 dark:border-gray-700/20 shadow-lg">
               <h2 className="text-3xl font-bold mb-4">Get Started</h2>
-              <div className="p-6 bg-blue-50 dark:bg-gray-800 rounded-lg border border-blue-200 dark:border-gray-700">
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  Want to explore or contribute to this project?
-                </p>
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-                >
-                  View Repository
-                </a>
-              </div>
+              <p className="text-gray-700 dark:text-gray-300 mb-4">
+                Want to explore or contribute to this project?
+              </p>
+
+              {/* Transparent Button */}
+              <motion.a
+                whileHover={{ scale: 1.07 }}
+                whileTap={{ scale: 0.96 }}
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block px-6 py-3 rounded-lg font-semibold 
+                backdrop-blur-lg bg-white/10 dark:bg-gray-900/10 
+                border border-blue-500/40 text-blue-600 dark:text-blue-300 
+                shadow-lg hover:shadow-blue-400/40 hover:bg-white/20 transition"
+              >
+                View Repository →
+              </motion.a>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* Related Projects */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold mb-12 text-center">Other Projects</h2>
-          <Link
-            href="/projects"
-            className="inline-block px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-700 transition-colors"
-          >
-            View All Projects
-          </Link>
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-8">Other Projects</h2>
+
+          <motion.div whileHover={{ scale: 1.05 }}>
+            <Link
+              href="/projects"
+              className="px-6 py-3 rounded-lg font-semibold 
+              backdrop-blur-lg bg-white/10 dark:bg-gray-900/10 
+              border border-blue-500/40 text-blue-600 dark:text-blue-300 
+              shadow-lg hover:shadow-blue-400/40 hover:bg-white/20 transition"
+            >
+              View All Projects →
+            </Link>
+          </motion.div>
         </div>
       </section>
     </main>

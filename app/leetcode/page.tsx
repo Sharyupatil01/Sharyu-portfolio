@@ -6,8 +6,8 @@ export default function LeetCodePage() {
   const stats = [
     {
       label: "Problems Solved",
-      value: "200+",
-      icon: "✓",
+      value: "600+",
+      icon: "🏆",
       color: "from-blue-600 to-cyan-500",
     },
     {
@@ -30,6 +30,19 @@ export default function LeetCodePage() {
     },
   ];
 
+  const milestones = [
+    { title: "🎯 First 100 Problems", desc: "Mastered basics of DSA patterns" },
+    { title: "🔥 300 Problems", desc: "Solved medium-level questions consistently" },
+    { title: "🚀 600+ Problems", desc: "Expert in DSA, recursion & DP" },
+    {
+      title: "🌟 Codolio Profile",
+      desc: "Verified achievements across all platforms",
+      link: "https://codolio.com/profile/psharyu01",
+    },
+  ];
+
+  const progressData = [50, 150, 320, 450, 600]; // fake graph data
+
   return (
     <main>
       {/* Hero Section */}
@@ -45,19 +58,35 @@ export default function LeetCodePage() {
                 LeetCode & Coding
               </span>
             </h1>
-            <p className="text-xl text-gray-600 dark:text-gray-400 mb-8">
-              Competitive programming journey and coding statistics
+            <p className="text-xl text-gray-600 dark:text-gray-400 mb-4">
+              My competitive programming journey and problem-solving statistics
             </p>
+
+            {/* Coding Journey */}
+            <p className="text-lg text-gray-700 dark:text-gray-300 mb-8 font-mono">
+              {"// "} I have solved <span className="text-green-600 font-bold">600+ DSA problems</span> across LeetCode, GFG & Codolio.
+            </p>
+
+            {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <motion.a
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 href="https://leetcode.com/u/sharyu01/"
                 target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 py-3 backdrop-blur-md border border-blue-500 text-blue-600 dark:text-blue-300 rounded-lg font-semibold hover:bg-blue-500/10 transition-all"
+                className="px-8 py-3 border border-blue-500 text-blue-600 rounded-lg font-semibold hover:bg-blue-500/10 transition-all"
               >
                 LeetCode Profile →
+              </motion.a>
+
+              <motion.a
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                href="https://codolio.com/profile/psharyu01"
+                target="_blank"
+                className="px-8 py-3 border border-purple-500 text-purple-600 rounded-lg font-semibold hover:bg-purple-500/10 transition-all"
+              >
+                Codolio Profile →
               </motion.a>
             </div>
           </motion.div>
@@ -66,7 +95,7 @@ export default function LeetCodePage() {
 
       {/* Stats Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-16">Statistics</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
@@ -78,7 +107,7 @@ export default function LeetCodePage() {
                 transition={{ duration: 0.3, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -5 }}
-                className={`p-6 bg-gradient-to-br ${stat.color} rounded-lg text-white shadow-lg hover:shadow-xl transition-shadow`}
+                className={`p-6 bg-gradient-to-br ${stat.color} rounded-lg text-white shadow-lg`}
               >
                 <div className="text-5xl mb-4">{stat.icon}</div>
                 <div className="text-4xl font-bold mb-2">{stat.value}</div>
@@ -89,139 +118,74 @@ export default function LeetCodePage() {
         </div>
       </section>
 
-      {/* Problem Categories */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16">Skills Mastered</h2>
+      {/* Progress Graph */}
+      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 className="text-3xl font-bold mb-8 text-center">📈 Coding Progress Graph</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {[
-              "Data Structures",
-              "Algorithms",
-              "Dynamic Programming",
-              "Graph Theory",
-              "String Manipulation",
-              "Array Problems",
-              "Tree Traversal",
-              "Linked Lists",
-              "Hash Maps",
-              "Binary Search",
-              "Two Pointers",
-              "Sliding Window",
-            ].map((skill, index) => (
+          <div className="w-full h-56 bg-white dark:bg-gray-700 rounded-xl shadow-md p-4 flex items-end gap-4">
+            {progressData.map((value, i) => (
               <motion.div
-                key={skill}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.05 }}
+                key={i}
+                initial={{ height: 0 }}
+                whileInView={{ height: `${value / 7}%` }}
+                transition={{ duration: 0.8, delay: i * 0.1 }}
                 viewport={{ once: true }}
-                className="p-4 bg-white dark:bg-gray-700 rounded-lg border-l-4 border-blue-600 shadow"
-              >
-                <p className="font-semibold text-lg">{skill}</p>
-              </motion.div>
+                className="w-full bg-gradient-to-t from-blue-500 to-cyan-400 rounded-md"
+              ></motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Difficulty Breakdown */}
+      {/* Milestones Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16">Problem Breakdown</h2>
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-4xl font-bold text-center mb-16">Badges & Milestones</h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { level: "Easy", count: "120+", color: "from-green-500 to-emerald-600" },
-              { level: "Medium", count: "70+", color: "from-amber-500 to-yellow-600" },
-              { level: "Hard", count: "15+", color: "from-cyan-500 to-blue-600" },
-            ].map((difficulty, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {milestones.map((m, index) => (
               <motion.div
-                key={difficulty.level}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
+                transition={{ delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className={`p-8 bg-gradient-to-br ${difficulty.color} text-white rounded-lg text-center shadow-lg hover:shadow-xl transition-shadow`}
+                className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-gray-800 dark:to-gray-700 rounded-xl border"
               >
-                <p className="text-lg opacity-90 mb-2">{difficulty.level} Level</p>
-                <p className="text-5xl font-bold">{difficulty.count}</p>
+                <h3 className="text-2xl font-bold mb-2">{m.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300 mb-3">{m.desc}</p>
+
+                {m.link && (
+                  <a
+                    href={m.link}
+                    target="_blank"
+                    className="text-blue-500 font-semibold underline"
+                  >
+                    View Codolio →
+                  </a>
+                )}
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Achievements */}
-      <section className="py-20 bg-white dark:bg-gray-900">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16">Achievements</h2>
+      {/* CTA Section */}
+      <section className="py-20 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 text-white text-center">
+        <h2 className="text-4xl font-bold mb-4">Follow My Journey</h2>
+        <p className="text-xl mb-8 opacity-90">
+          Tracking my progress one problem at a time 🚀
+        </p>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "365-Day Streak",
-                description: "Solved at least one problem every day for a full year",
-                icon: "🔥",
-              },
-              {
-                title: "Consistent Grinder",
-                description: "Regular problem solver improving daily",
-                icon: "💪",
-              },
-              {
-                title: "Problem Diversity",
-                description: "Strong understanding of various DSA concepts",
-                icon: "🎯",
-              },
-              {
-                title: "Top Performer",
-                description: "Ranked in top 10% globally on LeetCode",
-                icon: "👑",
-              },
-            ].map((achievement, index) => (
-              <motion.div
-                key={achievement.title}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="p-6 bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-gray-800 dark:to-gray-700 rounded-lg border-2 border-blue-200 dark:border-cyan-600 shadow hover:shadow-lg transition-all"
-              >
-                <div className="text-4xl mb-4">{achievement.icon}</div>
-                <h3 className="text-xl font-bold mb-2">{achievement.title}</h3>
-                <p className="text-gray-600 dark:text-gray-400">
-                  {achievement.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-20 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 text-white">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl font-bold mb-4">Follow My Journey</h2>
-            <p className="text-xl mb-8 opacity-90">
-              Check out my LeetCode progress and daily problem-solving streak
-            </p>
-            <motion.a
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              href="https://leetcode.com/u/sharyu01/"
-              target="_blank"
-              className="inline-block px-8 py-3 backdrop-blur-md border border-white text-white rounded-lg font-semibold hover:bg-white/20 transition-all"
-            >
-              LeetCode Profile →
-            </motion.a>
-          </motion.div>
-        </div>
+        <motion.a
+          whileHover={{ scale: 1.05 }}
+          href="https://leetcode.com/u/sharyu01/"
+          target="_blank"
+          className="px-8 py-3 border border-white rounded-lg font-semibold hover:bg-white/20"
+        >
+          LeetCode Profile →
+        </motion.a>
       </section>
     </main>
   );
