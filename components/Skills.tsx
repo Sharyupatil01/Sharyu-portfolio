@@ -47,13 +47,13 @@ const containerVariants = {
   },
 };
 
+// ✅ FIXED: Removed `type: "spring"` (causing incompatibility)
 const skillVariants = {
   hidden: { opacity: 0, y: 10 },
   visible: {
     opacity: 1,
     y: 0,
     transition: {
-      type: "spring",
       stiffness: 100,
       damping: 15,
     },
@@ -63,10 +63,14 @@ const skillVariants = {
 export default function Skills() {
   const getColorClasses = (color: string) => {
     const colorMap: { [key: string]: string } = {
-      "from-blue-400 to-blue-600": "text-blue-400 border-blue-400/40 hover:border-blue-400 hover:bg-blue-400/10 hover:shadow-blue-500/20",
-      "from-purple-400 to-purple-600": "text-purple-400 border-purple-400/40 hover:border-purple-400 hover:bg-purple-400/10 hover:shadow-purple-500/20",
-      "from-green-400 to-green-600": "text-green-400 border-green-400/40 hover:border-green-400 hover:bg-green-400/10 hover:shadow-green-500/20",
-      "from-pink-400 to-pink-600": "text-pink-400 border-pink-400/40 hover:border-pink-400 hover:bg-pink-400/10 hover:shadow-pink-500/20",
+      "from-blue-400 to-blue-600":
+        "text-blue-400 border-blue-400/40 hover:border-blue-400 hover:bg-blue-400/10 hover:shadow-blue-500/20",
+      "from-purple-400 to-purple-600":
+        "text-purple-400 border-purple-400/40 hover:border-purple-400 hover:bg-purple-400/10 hover:shadow-purple-500/20",
+      "from-green-400 to-green-600":
+        "text-green-400 border-green-400/40 hover:border-green-400 hover:bg-green-400/10 hover:shadow-green-500/20",
+      "from-pink-400 to-pink-600":
+        "text-pink-400 border-pink-400/40 hover:border-pink-400 hover:bg-pink-400/10 hover:shadow-pink-500/20",
     };
     return colorMap[color] || colorMap["from-blue-400 to-blue-600"];
   };
@@ -101,7 +105,9 @@ export default function Skills() {
               {/* Category Header */}
               <div className="flex items-center gap-3 mb-8">
                 <span className="text-3xl">{category.icon}</span>
-                <h3 className={`text-2xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent font-mono`}>
+                <h3
+                  className={`text-2xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent font-mono`}
+                >
                   {`const ${category.category.replace(/\s+/g, "")} = [`}
                 </h3>
               </div>
@@ -115,11 +121,7 @@ export default function Skills() {
                 className="pl-8 flex flex-wrap gap-3 justify-start"
               >
                 {category.skills.map((skill, skillIndex) => (
-                  <motion.div
-                    key={skill}
-                    variants={skillVariants}
-                    className="relative group"
-                  >
+                  <motion.div key={skill} variants={skillVariants} className="relative group">
                     <motion.div
                       whileHover={{ scale: 1.08, y: -2 }}
                       whileTap={{ scale: 0.95 }}
