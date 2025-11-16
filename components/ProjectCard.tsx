@@ -24,18 +24,21 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.3, delay: index * 0.1 }}
       viewport={{ once: true }}
-      whileHover={{ y: -10, boxShadow: "0 25px 50px rgba(0,0,0,0.2)" }}
-      className="group relative h-full bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300"
+      whileHover={{
+        y: -6,
+        scale: 1.02,
+        boxShadow: "0 30px 60px rgba(0,0,0,0.25)",
+      }}
+      className="group relative h-full bg-white/60 dark:bg-gray-900/40 backdrop-blur-xl rounded-2xl overflow-hidden border border-white/30 dark:border-gray-700/40 shadow-md hover:shadow-2xl transition-all duration-300"
     >
-      {/* Gradient Background */}
-      <div className={`h-56 bg-gradient-to-br ${gradient} flex items-center justify-center relative overflow-hidden`}>
-        <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-all duration-300" />
-        <div className="absolute -inset-1/2 bg-white/10 blur-3xl animate-pulse" />
+      {/* Header Gradient */}
+      <div className={`h-56 bg-gradient-to-br ${gradient} flex items-center justify-center relative`}>
+        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/10 transition-all duration-300" />
         <motion.span
-          initial={{ scale: 0.8, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          initial={{ y: 20, opacity: 0 }}
+          whileInView={{ y: 0, opacity: 1 }}
           transition={{ delay: 0.1 }}
-          className="text-white text-3xl font-bold text-center relative z-10 px-4"
+          className="text-white text-4xl font-extrabold tracking-wide drop-shadow-xl text-center px-4 z-10"
         >
           {project.title}
         </motion.span>
@@ -47,18 +50,19 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.15 }}
-          className="text-2xl font-bold mb-3 text-gray-900 dark:text-white"
+          className="text-2xl font-bold mb-3 text-gray-900 dark:text-gray-100 tracking-tight"
         >
           {project.title}
         </motion.h3>
 
+        {/* Longer Description */}
         <motion.p
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.2 }}
-          className="text-gray-600 dark:text-gray-400 mb-4 line-clamp-2 text-sm leading-relaxed"
+          className="text-gray-700 dark:text-gray-300 mb-4 text-sm leading-relaxed line-clamp-3"
         >
-          {project.shortDescription}
+          {project.description || project.shortDescription}
         </motion.p>
 
         {/* Tech Stack */}
@@ -71,53 +75,45 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
           {project.technologies.slice(0, 3).map((tech, i) => (
             <span
               key={tech}
-              className={`text-xs px-3 py-1.5 rounded-full font-medium ${
-                i === 0
-                  ? "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300"
-                  : i === 1
-                  ? "bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300"
-                  : "bg-pink-100 dark:bg-pink-900/50 text-pink-700 dark:text-pink-300"
-              }`}
+              className="text-xs px-3 py-1.5 rounded-full font-medium bg-white/70 dark:bg-gray-800/60 backdrop-blur-md border border-gray-300/40 dark:border-gray-600/40 text-gray-900 dark:text-gray-100"
             >
               {tech}
             </span>
           ))}
-          {project.technologies.length > 3 && (
-            <span className="text-xs px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 rounded-full font-medium">
-              +{project.technologies.length - 3} more
-            </span>
-          )}
         </motion.div>
 
         {/* Buttons */}
         <div className="flex gap-3">
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            className="flex-1"
-          >
+          {/* Glass Button */}
+          <motion.div whileHover={{ scale: 1.07 }} whileTap={{ scale: 0.96 }} className="flex-1">
             <Link
               href={`/projects/${project.slug}`}
-              className={`block w-full px-4 py-2.5 bg-gradient-to-r ${gradient} text-white rounded-lg hover:shadow-lg transition-all font-semibold text-center text-sm`}
+              className="block w-full px-4 py-2.5 rounded-lg text-center font-semibold text-sm
+              bg-white/30 dark:bg-white/10 backdrop-blur-xl border border-white/40 dark:border-gray-600/60
+              text-gray-900 dark:text-gray-100
+              hover:bg-white/50 dark:hover:bg-white/20 transition-all shadow-sm"
             >
               View Details
             </Link>
           </motion.div>
+
+          {/* GitHub Button */}
           <motion.a
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            whileHover={{ scale: 1.07 }}
+            whileTap={{ scale: 0.96 }}
             href={project.link}
             target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 px-4 py-2.5 border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 transition-all font-semibold text-center text-sm"
+            className="flex-1 px-4 py-2.5 rounded-lg text-center font-semibold text-sm border-2 border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 transition-all"
           >
             GitHub
           </motion.a>
         </div>
       </div>
 
-      {/* Decorative Element */}
-      <div className={`absolute top-0 right-0 w-32 h-32 bg-gradient-to-br ${gradient} opacity-10 rounded-full blur-2xl -mr-16 -mt-16 group-hover:opacity-20 transition-opacity duration-300`} />
+      {/* Glow Decoration */}
+      <div
+        className={`absolute top-0 right-0 w-40 h-40 bg-gradient-to-br ${gradient} opacity-20 rounded-full blur-3xl -mr-20 -mt-20 group-hover:opacity-30 transition-all`}
+      />
     </motion.article>
   );
 }

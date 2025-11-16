@@ -8,15 +8,15 @@ export default function Hero() {
   name: "Sharyu Popat Patil",
   role: "Full-Stack Developer",
   expertise: [
+    "Java"
     "React",
-    "Next.js",
     "Node.js",
-    "TypeScript",
+    "Javascript",
     "AI/ML"
   ],
   passion: "Building scalable apps",
-  currentlyLearning: "Advanced AI/LLM",
-  funFact: "365-day LeetCode streak! 🔥"
+  currentlyLearning: "AI/LLM",
+  funFact: "I prefer coding at day time ! 🔥"
 };`;
 
   return (

@@ -6,33 +6,33 @@ interface SkillCategory {
   category: string;
   skills: string[];
   color: string;
-  icon: string;
+ 
 }
 
 const skillCategories: SkillCategory[] = [
   {
     category: "Frontend",
     skills: ["HTML", "CSS", "JavaScript", "React"],
-    color: "from-blue-400 to-blue-600",
-    icon: "🎨",
+    color: "from-blue-400 to-blue-600"
+  
   },
   {
     category: "Backend & DB",
     skills: ["Java", "Node.js", "Express.js", "MongoDB"],
-    color: "from-purple-400 to-purple-600",
-    icon: "⚙️",
+    color: "from-purple-400 to-purple-600"
+  
   },
   {
     category: "Tools & Platforms",
     skills: ["Postman", "Render", "Vercel", "GitHub", "Git"],
-    color: "from-green-400 to-green-600",
-    icon: "🛠️",
+    color: "from-green-400 to-green-600"
+   
   },
   {
     category: "Core Strengths",
     skills: ["OOPs", "DSA", "Problem Solving", "Clean Code"],
-    color: "from-pink-400 to-pink-600",
-    icon: "🧠",
+    color: "from-pink-400 to-pink-600"
+   
   },
 ];
 
@@ -93,7 +93,8 @@ export default function Skills() {
           </p>
         </motion.div>
 
-        <div className="space-y-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+
           {skillCategories.map((category, categoryIndex) => (
             <motion.div
               key={category.category}
@@ -104,7 +105,7 @@ export default function Skills() {
             >
               {/* Category Header */}
               <div className="flex items-center gap-3 mb-8">
-                <span className="text-3xl">{category.icon}</span>
+               
                 <h3
                   className={`text-2xl font-bold bg-gradient-to-r ${category.color} bg-clip-text text-transparent font-mono`}
                 >

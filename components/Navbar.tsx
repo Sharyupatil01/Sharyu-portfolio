@@ -7,9 +7,9 @@ import ThemeToggle from "./ThemeToggle";
 export default function Navbar() {
   const navItems = [
     { label: "Home", href: "/" },
-    { label: "Projects", href: "/projects" },
+    { label: "My Work", href: "/projects" },
     { label: "Medium", href: "/medium" },
-    { label: "LeetCode", href: "/leetcode" },
+    { label: "Coding", href: "/leetcode" },
     { label: "Contact", href: "/contact" },
   ];
 
