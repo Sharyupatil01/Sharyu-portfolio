@@ -55,19 +55,9 @@ export default function LeetCodePage() {
                 href="https://leetcode.com/u/sharyu01/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block px-8 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
+                className="inline-block px-8 py-3 backdrop-blur-md border border-blue-500 text-blue-600 dark:text-blue-300 rounded-lg font-semibold hover:bg-blue-500/10 transition-all"
               >
                 LeetCode Profile →
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://medium.com/@sharyu2701"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 py-3 bg-gradient-to-r from-gray-800 to-gray-900 dark:from-gray-700 dark:to-gray-800 text-white rounded-lg font-semibold hover:shadow-lg transition-shadow"
-              >
-                Medium Blog →
               </motion.a>
             </div>
           </motion.div>
@@ -161,74 +151,6 @@ export default function LeetCodePage() {
         </div>
       </section>
 
-      {/* Medium Blog Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-4xl font-bold text-center mb-16">Latest from Medium</h2>
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {/* Recent Article */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-all"
-            >
-              <div className="h-2 bg-gradient-to-r from-amber-500 to-orange-500"></div>
-              <div className="p-6">
-                <h3 className="text-2xl font-bold mb-2">
-                  Authentication Beyond Login
-                </h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-4">
-                  The Secret Behind Netflix's One Device Streaming Restriction
-                </p>
-                <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
-                  Explore how Netflix manages device streaming restrictions through advanced authentication mechanisms and session management.
-                </p>
-                <motion.a
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  href="https://medium.com/@sharyu2701/authentication-beyond-login-the-secret-behind-netflixs-one-device-streaming-restriction-269e2a8b155e"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-2 bg-gradient-to-r from-amber-600 to-orange-600 text-white rounded font-semibold hover:shadow-lg transition-shadow"
-                >
-                  Read on Medium →
-                </motion.a>
-              </div>
-            </motion.div>
-
-            {/* Medium Profile */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-              viewport={{ once: true }}
-              className="bg-white dark:bg-gray-700 rounded-lg p-6 shadow-lg hover:shadow-xl transition-all flex flex-col justify-between"
-            >
-              <div>
-                <div className="text-4xl mb-4">📝</div>
-                <h3 className="text-2xl font-bold mb-3">My Medium Blog</h3>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  Sharing insights on web development, authentication, streaming technologies, and advanced programming concepts through detailed technical articles.
-                </p>
-              </div>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://medium.com/@sharyu2701"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-6 py-3 bg-gray-800 dark:bg-gray-900 text-white rounded font-semibold hover:shadow-lg transition-shadow text-center"
-              >
-                Visit All Articles →
-              </motion.a>
-            </motion.div>
-          </div>
-        </div>
-      </section>
-
       {/* Achievements */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -276,7 +198,7 @@ export default function LeetCodePage() {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* CTA */}
       <section className="py-20 bg-gradient-to-r from-blue-600 via-cyan-600 to-teal-600 text-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -287,30 +209,17 @@ export default function LeetCodePage() {
           >
             <h2 className="text-4xl font-bold mb-4">Follow My Journey</h2>
             <p className="text-xl mb-8 opacity-90">
-              Check out my LeetCode profile and Medium blog for insights and solutions
+              Check out my LeetCode progress and daily problem-solving streak
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://leetcode.com/u/sharyu01/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 py-3 bg-white text-blue-600 rounded-lg font-semibold hover:bg-gray-100 transition-colors"
-              >
-                LeetCode Profile →
-              </motion.a>
-              <motion.a
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                href="https://medium.com/@sharyu2701"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block px-8 py-3 bg-white/20 text-white rounded-lg font-semibold hover:bg-white/30 transition-colors border border-white"
-              >
-                Medium Blog →
-              </motion.a>
-            </div>
+            <motion.a
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              href="https://leetcode.com/u/sharyu01/"
+              target="_blank"
+              className="inline-block px-8 py-3 backdrop-blur-md border border-white text-white rounded-lg font-semibold hover:bg-white/20 transition-all"
+            >
+              LeetCode Profile →
+            </motion.a>
           </motion.div>
         </div>
       </section>
