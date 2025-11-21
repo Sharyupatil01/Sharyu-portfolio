@@ -73,7 +73,7 @@ export default function Footer() {
 
         <div className="border-t border-gray-200 dark:border-gray-800 pt-8">
           <p className="text-center text-gray-600 dark:text-gray-400 text-sm">
-            © {currentYear} Sharyu Popat Patil. All rights reserved.
+            © {currentYear} Created with Love 💗 Sharyu Popat Patil.
           </p>
         </div>
       </div>

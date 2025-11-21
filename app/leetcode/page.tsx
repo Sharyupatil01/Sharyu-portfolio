@@ -22,12 +22,7 @@ export default function LeetCodePage() {
       icon: "📈",
       color: "from-green-600 to-emerald-500",
     },
-    {
-      label: "Global Rank",
-      value: "Top 10%",
-      icon: "👑",
-      color: "from-purple-600 to-indigo-500",
-    },
+    
   ];
 
   const milestones = [
